@@ -25,4 +25,11 @@ HEADERS  += \
     src/dialog/mainwindow.h \
     src/ui/chart.h
 
-FORMS    +=
+FORMS    += \
+    src/dialog/dialog.ui \
+    src/dialog/mainwindow.ui
+
+INCLUDEPATH += \
+    src/core \
+    src/dialog \
+    src/ui

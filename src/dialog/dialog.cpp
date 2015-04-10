@@ -31,12 +31,14 @@ void Dialog::on_pushButton_4_clicked()
     if (text1.startsWith("\n")) text1 = text1.right(text1.length()-1);
     ui->plainTextEdit->setPlainText(text1);
     int n1 = ui->plainTextEdit->blockCount();
+    if (ui->plainTextEdit->toPlainText()=="") n1 = 0;
 
     QString text2 = ui->plainTextEdit_2->toPlainText().replace("\n\n", "\n");
     if (text2.endsWith("\n")) text2 = text2.left(text2.length()-1);
     if (text2.startsWith("\n")) text2 = text2.right(text2.length()-1);
     ui->plainTextEdit_2->setPlainText(text2);
     int n2 = ui->plainTextEdit_2->blockCount();
+    if (ui->plainTextEdit_2->toPlainText()=="") n2 = 0;
 
     QMessageBox msgbox("Warning", QString("Are you sure to start the game?\nPlayers: %1, Infected: %2.")
                                   .arg(n1).arg(n2),

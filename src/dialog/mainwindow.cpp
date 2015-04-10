@@ -9,6 +9,8 @@
 #include <QGraphicsView>
 #include <QMessageBox>
 
+QMessageBox *aboutmsgbox;
+QPixmap *logopix;
 Player *player[50];
 int players = 0;
 Chart *chart;
@@ -26,6 +28,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->graphicsView->setScene(scene);
     ui->textEdit->append("New Game");
+
+    aboutmsgbox = new QMessageBox("About", "A game inspector for Infection\n"
+                                           "using Qt GUI application frame.\n"
+                                           "Do not use it for commercial purpose.\n"
+                                           "By Infinity.",
+                                  QMessageBox::Information, QMessageBox::Ok, 0, 0);
+    aboutmsgbox->setIconPixmap(*logopix);
+    connect(ui->action_About, SIGNAL(triggered()),
+            this, SLOT(menu_info_about_clicked()));
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +44,11 @@ MainWindow::~MainWindow()
     delete chart;
     delete scene;
     delete ui;
+}
+
+void MainWindow::menu_info_about_clicked()
+{
+    aboutmsgbox->exec();
 }
 
 QString getDelta(int a, int b)
